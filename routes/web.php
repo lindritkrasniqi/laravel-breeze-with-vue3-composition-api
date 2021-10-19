@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/', 'welcome');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/profile', 'profile')->name('profile');
+    Route::view('/companies', 'companies')->name('companies');
+
+    Route::get('/companies/{any}', fn () => response()->redirectToRoute('companies'));
+
+    Route::put('/profile', ProfileController::class)->name('profile.update');
 });
+
+require __DIR__ . '/auth.php';
