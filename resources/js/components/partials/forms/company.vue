@@ -27,7 +27,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.owner_firstname">
-              {{ errors.owner_firstname[0] }}
+              {{ errors.owner_firstname.toString() }}
             </b>
           </div>
 
@@ -55,7 +55,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.owner_lastname">
-              {{ errors.owner_lastname[0] }}
+              {{ errors.owner_lastname.toString() }}
             </b>
           </div>
 
@@ -83,7 +83,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.owner_email">
-              {{ errors.owner_email[0] }}
+              {{ errors.owner_email.toString() }}
             </b>
           </div>
 
@@ -111,7 +111,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.name">
-              {{ errors.name[0] }}
+              {{ errors.name.toString() }}
             </b>
           </div>
 
@@ -143,7 +143,7 @@
               <option>Mexico</option>
             </select>
             <b class="mt-1 text-sm text-red-600" v-if="errors.country">
-              {{ errors.country[0] }}
+              {{ errors.country.toString() }}
             </b>
           </div>
 
@@ -171,7 +171,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.street_address">
-              {{ errors.street_address[0] }}
+              {{ errors.street_address.toString() }}
             </b>
           </div>
 
@@ -196,7 +196,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.city">
-              {{ errors.city[0] }}
+              {{ errors.city.toString() }}
             </b>
           </div>
 
@@ -221,7 +221,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.state">
-              {{ errors.state[0] }}
+              {{ errors.state.toString() }}
             </b>
           </div>
 
@@ -249,7 +249,7 @@
               "
             />
             <b class="mt-1 text-sm text-red-600" v-if="errors.postal_code">
-              {{ errors.postal_code[0] }}
+              {{ errors.postal_code.toString() }}
             </b>
           </div>
         </div>
