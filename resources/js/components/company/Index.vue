@@ -152,26 +152,14 @@
   </div>
 </template>
 
-<script>
-import { getCompanies, deleteCompany } from "../../compositions/company";
+<script setup>
+import { onBeforeMount } from "@vue/runtime-core";
 
-export default {
-  data() {
-    return { companies: [] };
-  },
+const {
+  companies,
+  getCompanies,
+  deleteCompany,
+} = require("../../composables/company");
 
-  async mounted() {
-    this.companies = await getCompanies();
-  },
-
-  methods: {
-    async deleteCompany(id) {
-      if (confirm("Are you sure?")) {
-        await deleteCompany(id);
-
-        this.companies = await getCompanies();
-      }
-    },
-  },
-};
+onBeforeMount(getCompanies());
 </script>

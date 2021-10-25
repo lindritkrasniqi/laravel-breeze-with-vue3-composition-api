@@ -19,23 +19,22 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import PartialsCompany from "../partials/forms/company.vue";
-import { storeCompany } from "../../compositions/company";
+import { useRouter } from "vue-router";
+const { storeCompany } = require("../../composables/company");
 
-export default {
-  data: () => ({ errors: [] }),
+export default { components: { PartialsCompany } };
+</script>
 
-  components: {
-    PartialsCompany,
-  },
+<script setup>
+const errors = ref({});
 
-  methods: {
-    store(company) {
-      this.errors = [];
-      storeCompany(company)
-        .then(() => this.$router.push({ name: "companies" }))
-        .catch((e) => (this.errors = e.response.data.errors));
-    },
-  },
+const store = (data) => {
+  errors.value = {};
+
+  storeCompany(data)
+    .then(() => useRouter().push({ name: "companies" }))
+    .catch((e) => (errors.value = e.response.data.errors));
 };
 </script>

@@ -23,26 +23,27 @@
 </template>
 
 <script>
+import { ref, onBeforeMount } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import PartialsCompany from "../partials/forms/company.vue";
-import { getCompany, updateCompany } from "../../compositions/company";
+const { getCompany, updateCompany } = require("../../composables/company");
 
-export default {
-  data: () => ({ company: {}, errors: [] }),
+export default { components: { PartialsCompany } };
+</script>
 
-  components: {
-    PartialsCompany,
-  },
+<script setup>
+const errors = ref({});
+const company = ref({});
 
-  async created() {
-    this.company = await getCompany(this.$route.params.id);
-  },
+onBeforeMount(
+  async () => (company.value = await getCompany(useRoute().params.id))
+);
 
-  methods: {
-    save(data) {
-      updateCompany(this.$route.params.id, data)
-        .then(() => this.$router.push({ name: "companies" }))
-        .catch((e) => (this.errors = e.response.data.errors));
-    },
-  },
+const save = (data) => {
+  errors.value = {};
+  
+  updateCompany(useRoute().params.id, data)
+    .then(() => useRouter().push({ name: "companies" }))
+    .catch((e) => (errors.value = e.response.data.errors));
 };
 </script>
