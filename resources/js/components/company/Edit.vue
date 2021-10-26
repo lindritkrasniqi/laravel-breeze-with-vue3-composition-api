@@ -22,16 +22,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import PartialsCompany from "../partials/forms/company.vue";
 const { getCompany, updateCompany } = require("../../composables/company");
 
-export default { components: { PartialsCompany } };
-</script>
-
-<script setup>
 const errors = ref({});
 const company = ref({});
 
@@ -41,7 +37,7 @@ onBeforeMount(
 
 const save = (data) => {
   errors.value = {};
-  
+
   updateCompany(useRoute().params.id, data)
     .then(() => useRouter().push({ name: "companies" }))
     .catch((e) => (errors.value = e.response.data.errors));

@@ -18,16 +18,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-import PartialsCompany from "../partials/forms/company.vue";
 import { useRouter } from "vue-router";
+import PartialsCompany from "../partials/forms/company.vue";
 const { storeCompany } = require("../../composables/company");
 
-export default { components: { PartialsCompany } };
-</script>
-
-<script setup>
 const errors = ref({});
 
 const store = (data) => {
