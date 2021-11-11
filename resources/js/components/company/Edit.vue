@@ -30,16 +30,18 @@ const { getCompany, updateCompany } = require("../../composables/company");
 
 const errors = ref({});
 const company = ref({});
+const router = useRouter();
+const route = useRoute();
 
 onBeforeMount(
-  async () => (company.value = await getCompany(useRoute().params.id))
+  async () => (company.value = await getCompany(route.params.id))
 );
 
 const save = (data) => {
   errors.value = {};
 
-  updateCompany(useRoute().params.id, data)
-    .then(() => useRouter().push({ name: "companies" }))
+  updateCompany(route.params.id, data)
+    .then(() => router.push({ name: "companies" }))
     .catch((e) => (errors.value = e.response.data.errors));
 };
 </script>
