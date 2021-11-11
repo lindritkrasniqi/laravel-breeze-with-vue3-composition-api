@@ -13,6 +13,8 @@ export const updateCompany = async (id, data) => (await axios.put(`companies/${i
 
 export const deleteCompany = async (id) => {
     if (confirm("Are you sure?")) {
+        companies.value.data = companies.value.data.filter(element => element.id != id);
+
         const response = (await axios.delete(`companies/${id}`)).data;
 
         response ? getCompanies() : alert('An error occur!');

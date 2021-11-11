@@ -25,12 +25,13 @@ import PartialsCompany from "../partials/forms/company.vue";
 const { storeCompany } = require("../../composables/company");
 
 const errors = ref({});
+const router = useRouter();
 
 const store = (data) => {
   errors.value = {};
 
   storeCompany(data)
-    .then(() => useRouter().push({ name: "companies" }))
+    .then(() => router.push({ name: "companies" }))
     .catch((e) => (errors.value = e.response.data.errors));
 };
 </script>
